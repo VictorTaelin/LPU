@@ -203,7 +203,7 @@ module.exports = (function(){
                         link.name  = ++next_id,
                         rlink.name = link.name;
                 };
-                result.push([node.k,
+                result.push([node.k+1,
                     port(node,0).name,
                     port(node,1).name,
                     port(node,2).name]);
