@@ -163,31 +163,7 @@ module.exports = (function(){
         stats_callback && stats_callback(stats);
         return port(root, 1);
     };
-    function show(link){
-        var next_name = 0;
-        var link_name = {};
-        var visited   = {};
-        return (function go(next){
-            if (next.node)
-                visited[next.node.n] = true;
-            // Root
-            if (!next.node || !next.node.k)
-                return "*";
-            // Top of tree
-            else if (next.port === 0)
-                return (function(color, text){
-                    return color === 1 ? "("+text+")" : "{"+color+"| "+text+"}";
-                })(next.node.k, next.node.n + ": " + go(next.node.b) + " " + go(next.node.c));
-            // Active port
-            else if (next.node.a.port === 0 && !visited[next.node.a.node.n])
-                return go(next.node.a) + " = " + go(new Link(next.node, 0));
-            // Found solid
-            else
-                return next[next.node.n+":"+next.port] 
-                    || (next[reverse(next).node.n+":"+reverse(next).port] = ++next_name);
-        })(link);
-    };
-    function text(link){
+    function text(link){ // for debugging purposes
         var next_id = 1;
         var result  = [];
         var visited = {};
