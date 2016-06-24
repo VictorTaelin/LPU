@@ -6,7 +6,7 @@ module.exports = (function(){
     };
     var next_name = 0;
     function Node(color){
-        this.n = ++next_name;
+        this.n = ++next_name; // not necessary if we know the pointer address
         this.k = color;
         this.a = link(null, 0);
         this.b = link(null, 0);
